@@ -20,7 +20,7 @@ function getConfig(request) {
     .setName('Enter a single user or group name')
     .setHelpText('e.g. @llvm-fedora-team')
     .setPlaceholder('@llvm-fedora-team');
-/*
+
   config.newTextInput()
     .setId('coprProjectName')
     .setName('Enter a single project name')
@@ -33,19 +33,22 @@ function getConfig(request) {
     .setHelpText('e.g. clang')
     .setPlaceholder('clang');
 
-  config.newSelectSingle()
-    .setId('coprBuildStatus')
-    .setName('status')
-    .setHelpText('Select a build status state to filter by or select "all"')
-    .addOption("all")
-    .addOption("failed")
-    .addOption("succeeded")
+    config.newSelectSingle()
+      .setId("coprBuildStatus")
+      .setName("Select a build status to filter by or all")
+  // Set isDynamic to true so any changes to State will clear the status
+  // selections.
+      .setIsDynamic(true)
+      .addOption(config.newOptionBuilder().setLabel("All").setValue("all"))
+      .addOption(config.newOptionBuilder().setLabel("Failed").setValue("failed"))
+      .addOption(config.newOptionBuilder().setLabel("Succeeded").setValue("succeeded"));
   // TODO(kwk): Add more states as we go
 
+  /*
   config.newInfo()
     .setId('coprExpertInstructions')
     .setText('!!!Experts only!!!');
-*/
+    */
 
   config.newTextInput()
     .setId('coprApiUrl')
@@ -260,7 +263,7 @@ function fetchDataFromApi(request) {
     url.push('&packagename=', coprPackageName)
   }
   var coprBuildStatus = config.valueOf('coprBuildStatus').toString()
-  if (coprBuildStatus != "all") {
+  if (coprBuildStatus != "all" || coprBuildStatus == '') {
     url.push('&status=', coprBuildStatus)
   }
 
