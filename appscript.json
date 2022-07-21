@@ -1,12 +1,19 @@
 {
-    "dataStudio": {
-        "name": "CoprConnector",
-        "logoUrl": "https://raw.githubusercontent.com/kwk/copr-connector-gds/main/copr-connector-gds-logo.png",
-        "company": "Konrad Kleine",
-        "companyUrl": "https://github.com/kwk/copr-connector-gds",
-        "addonUrl": "https://github.com/kwk/copr-connector-gds",
-        "supportUrl": "https://github.com/kwk/copr-connector-gds/issues",
-        "description": "Get information about package builds in Copr.",
-        "sources": ["npm"]
+  "dependencies": {
+    "libraries": []
+  },
+  "dataStudio": {
+    "name": "CoprConnector",
+    "logoUrl": "https://raw.githubusercontent.com/kwk/copr-connector-gds/main/copr-connector-gds-logo.png",
+    "company": "Konrad Kleine",
+    "companyUrl": "https://github.com/kwk/copr-connector-gds",
+    "addonUrl": "https://github.com/kwk/copr-connector-gds",
+    "supportUrl": "https://github.com/kwk/copr-connector-gds/issues",
+    "description": "Get information about package builds in Copr.",
+    "sources": ["npm"],
+    "templates": {
+      "default": "1twu0sHjqR5dELAPyGJcw4GS3-D0_NTrQ"
     }
-}  
+  },
+  "oauthScopes": ["https://www.googleapis.com/auth/script.external_request"]
+}
