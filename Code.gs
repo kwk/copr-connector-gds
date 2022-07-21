@@ -20,7 +20,7 @@ function getConfig(request) {
     .setName('Enter a single user or group name')
     .setHelpText('e.g. @llvm-fedora-team')
     .setPlaceholder('@llvm-fedora-team');
-
+/*
   config.newTextInput()
     .setId('coprProjectName')
     .setName('Enter a single project name')
@@ -45,6 +45,7 @@ function getConfig(request) {
   config.newInfo()
     .setId('coprExpertInstructions')
     .setText('!!!Experts only!!!');
+*/
 
   config.newTextInput()
     .setId('coprApiUrl')
@@ -58,7 +59,8 @@ function getConfig(request) {
 }
 
 function getFields(request) {
-  var fields = cc.getFields();
+    var cc = DataStudioApp.createCommunityConnector();
+    var fields = cc.getFields();
   var types = cc.FieldType;
   var aggregations = cc.AggregationType;
 
@@ -207,11 +209,16 @@ function responseToRows(requestedFields, response, packageName) {
 }
 
 function getData(request) {
-  var requestedFields = getFields().forIds(
+  /*var requestedFields = getFields().forIds(
     request.fields.map(function (field) {
       return field.name;
     })
-  );
+  );*/
+  var requestedFieldIds = request.fields.map(function(field) {
+    return field.name;
+  });
+  var requestedFields = getFields().forIds(requestedFieldIds);
+
 
   try {
     var response = fetchDataFromApi(request)
